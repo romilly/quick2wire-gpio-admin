@@ -26,6 +26,9 @@ $(OUTDIR)/%.o: $(SRCDIR)/%.c
 install: all
 	groupadd -f --system gpio
 	install -g gpio -m u=rwxs,g=rxs,o=rx $(OUTDIR)/gpio-admin $(PREFIX)/bin
+	mkdir -p $(PREFIX)/share/man/man1/
+	install man/*.1 $(PREFIX)/share/man/man1/
+
 .PHONY: install
 
 uninstall:
