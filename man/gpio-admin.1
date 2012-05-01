@@ -1,0 +1,48 @@
+.TH GPIO-ADMIN "1" "May 2012" "Quick2Wire" "User Commands"
+.SH NAME
+gpio-admin \- export or unexport a GPIO pin and make it accessible to users in the gpio group.
+
+.SH SYNOPSIS
+.B gpio-admin export
+\fIgpio-pin-number\fR
+.br
+.B gpio-admin unexport
+\fIgpio-pin-number\fR
+.br
+
+.SH DESCRIPTION
+.\" Add any additional description here
+.PP
+Exports or unexports a GPIO pin and allows users in the gpio group to control it.
+.PP
+\fBgpio export\fR \fIn\fR
+.RS 4
+exports pin \fIn\fR as files under \fB/sys/devices/virtual/gpio\fR\fIn\fR/ 
+and makes the pin's control files readable and writeable by users in the gpio group.
+.RE
+.PP
+\fBgpio unexport\fR \fIn\fR 
+.RS 4
+unexports pin \fIn\fR, removing the directory \fB/sys/devices/virtual/gpio\fR\fIn\fR/.
+.RE
+
+.SH NOTE
+.PP
+Pins are identified by their SOC numbers, \fInot\fR the GPIO header pin numbers. 
+For example, on the Raspberry Pi header pin 3 is mapped to SOC number 0, 5 to 1, etc.
+
+.SH AUTHOR
+Written by Nat Pryce
+.SH "REPORTING BUGS"
+Report gpio-admin bugs at <http://github.com/quick2wire/quick2wire-gpio-admin/issues>.
+
+.SH SOURCE
+Source for gpio-admin is available from: <http://github.com/quick2wire/quick2wire-gpio-admin>.
+
+.SH COPYRIGHT
+Copyright \(co 2012 Quick2Wire Ltd. <http://quick2wire.com/>
+.br
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
