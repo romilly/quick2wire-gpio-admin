@@ -27,7 +27,9 @@ To access the GPIO pins you must add yourself to the gpio group:
 
     sudo adduser $USER gpio
 
-Usage instructions are installed as a man page.
+Usage instructions are installed as a man page, and so can be read with the command:
+
+    man gpio-admin
 
 
 Copyright & License
