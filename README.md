@@ -23,7 +23,9 @@ To uninstall, run the command:
 Usage
 -----
 
-Users that want to access GPIO pins must be added to the gpio group.
+To access the GPIO pins you must add yourself to the gpio group:
+
+    sudo adduser $USER gpio
 
 Usage instructions are installed as a man page.
 
