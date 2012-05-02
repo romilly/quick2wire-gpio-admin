@@ -12,13 +12,13 @@ To install the gpio-admin command & manual page, and create the gpio
 group if it does not already exist, run the following commands from the
 root of the source tree:
 
-    % make
-    % sudo make install
+    make
+    sudo make install
 
 
 To uninstall, run the command:
 
-    % make uninstall
+    make uninstall
 
 Usage
 -----
