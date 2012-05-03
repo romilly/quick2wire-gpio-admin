@@ -20,8 +20,9 @@ To uninstall, run the command:
 
     sudo make uninstall
 
-Usage
------
+
+Getting Started
+---------------
 
 To access the GPIO pins you must add yourself to the gpio group:
 
