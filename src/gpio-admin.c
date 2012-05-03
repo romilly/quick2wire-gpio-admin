@@ -1,6 +1,6 @@
 /*
  * Copyright 2012, Quick2Wire.com.
- * Dual licensed under MIT or LGPL licenses: http://license.quick2wire.com
+ * Dual licensed under MIT or LGPL licenses: http://quick2wire.com/license
  */
 
 #include <stdlib.h>
