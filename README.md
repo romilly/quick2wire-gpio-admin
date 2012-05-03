@@ -12,16 +12,26 @@ To install the gpio-admin command & manual page, and create the gpio
 group if it does not already exist, run the following commands from the
 root of the source tree:
 
-  % make
-  % sudo make install
+    make
+    sudo make install
 
+
+To uninstall, run the command:
+
+    sudo make uninstall
 
 Usage
 -----
 
-Users that want to access GPIO pins must be added to the gpio group.
+To access the GPIO pins you must add yourself to the gpio group:
 
-Usage instructions are installed as a man page.
+    sudo adduser $USER gpio
+    
+Then log out and back in again.
+
+Usage instructions are installed as a man page, and so can be read with the command:
+
+    man gpio-admin
 
 
 Copyright & License
