@@ -41,6 +41,10 @@ You can now export GPIO pins and use them without having to log in as root or us
 When finished with a pin, unexport it again:
 
     % gpio-admin unexport 22
+    
+
+More Information
+----------------
 
 Usage instructions are installed as a man page, and so can be read with the command:
 
