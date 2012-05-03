@@ -18,7 +18,7 @@ root of the source tree:
 
 To uninstall, run the command:
 
-    make uninstall
+    sudo make uninstall
 
 Usage
 -----
