@@ -28,7 +28,7 @@ To access the GPIO pins you must add yourself to the gpio group:
 
     sudo adduser $USER gpio
     
-Then log out and back in again. (Your membership of the gpio group won't take effect until you do).
+Then log out and back in again. (Your membership of the gpio group won't take effect until you do.)
 
 You can now export GPIO pins and use them without having to log in as root or use the sudo command.
 
