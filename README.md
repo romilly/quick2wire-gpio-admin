@@ -50,7 +50,7 @@ The gpio-admin command works with the GPIO identifiers defined by the SOC, *not*
 header pin numbers or the GPIO numbers assigned to header pins by the Raspberry Pi documentation.
 
 The example above uses SOC GPIO 22, which corresponds to header pin 8 on the Raspberry Pi, and that
-pin is named GPIO 3 in the Raspberry Py documentation.
+pin is named GPIO 3 in the Raspberry Pi documentation.
 
 All very confusing!
 
