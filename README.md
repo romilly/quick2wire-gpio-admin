@@ -2,7 +2,7 @@ GPIO Admin
 ==========
 
 A command-line tool to export or unexport the Raspberry Pi's GPIO pins
-and allow users in the gpio group to control then.
+and allow only the user to control then.
 
 
 Installation
@@ -54,7 +54,7 @@ pin is named GPIO 3 in the Raspberry Pi documentation.
 
 All very confusing!
 
-We will provide higher level APIs that map between the pin identifiers that users understand and the 
+We provide [higher level APIs](https://github.com/quick2wire/quick2wire-python-api/) that map between the pin identifiers that users understand and the 
 identifiers defined by the SOC, and use gpio-admin behind the scenes to export/unexport GPIO pins as
 required.
 
