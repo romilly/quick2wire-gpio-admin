@@ -1,6 +1,6 @@
 .TH GPIO-ADMIN "1" "May 2012" "Quick2Wire" "User Commands"
 .SH NAME
-gpio-admin \- export or unexport a GPIO pin and make it accessible to users in the gpio group.
+gpio-admin \- export or unexport a GPIO pin and make it accessible to the user only.
 
 .SH SYNOPSIS
 .B gpio-admin export
@@ -13,12 +13,12 @@ gpio-admin \- export or unexport a GPIO pin and make it accessible to users in t
 .SH DESCRIPTION
 .\" Add any additional description here
 .PP
-Exports or unexports a GPIO pin and allows users in the gpio group to control it.
+Exports or unexports a GPIO pin and allows only the user to control it.
 .PP
 \fBgpio export\fR \fIn\fR
 .RS 4
 exports pin \fIn\fR as files under \fB/sys/devices/virtual/gpio\fR\fIn\fR/ 
-and makes the pin's control files readable and writeable by users in the gpio group.
+and makes the pin's control files readable and writeable by the user only.
 .RE
 .PP
 \fBgpio unexport\fR \fIn\fR 
