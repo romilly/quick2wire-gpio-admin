@@ -28,7 +28,8 @@ out/gpio-admin.1.gz: man/gpio-admin.1
 
 install: all
 	groupadd -f --system gpio
-	install -g gpio -m u=rwxs,g=rxs,o= $(OUTDIR)/gpio-admin $(PREFIX)/bin
+	mkdir -p $(PREFIX)/bin/
+	install -g gpio -m u=rwxs,g=rxs,o= $(OUTDIR)/gpio-admin $(PREFIX)/bin/
 	mkdir -p $(PREFIX)/share/man/man1/
 	install out/*.1.gz $(PREFIX)/share/man/man1/
 
