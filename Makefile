@@ -1,10 +1,15 @@
 
+PROJECT=quick2wire-gpio-admin
+VERSION=1.0.0
+
+PACKAGE=$(PROJECT)-$(VERSION)
+
 CC=gcc
 CFLAGS=-Wall -O2
 
 ARCH:=$(shell uname -m)
-OUTDIR=out/$(ARCH)
 SRCDIR=src
+OUTDIR=out/$(ARCH)
 
 SRC=$(wildcard $(SRCDIR)/*.c)
 OBJS=$(SRC:$(SRCDIR)/%.c=$(OUTDIR)/%.o)
@@ -16,6 +21,19 @@ endif
 
 all: $(OUTDIR)/gpio-admin out/gpio-admin.1.gz
 .PHONY: all
+
+dist: out/$(PACKAGE).tar.gz
+.PHONY: dist
+
+out/$(PACKAGE).tar.gz:
+	mkdir -p out/
+	ln -s $(PWD) out/$(PACKAGE)
+	tar czf out/$(PACKAGE).tar.gz \
+		--dereference \
+		--exclude-vcs \
+		--exclude="out" \
+		-C out/ $(PACKAGE)
+	rm out/$(PACKAGE)
 
 $(OUTDIR)/gpio-admin: $(OBJS)
 
