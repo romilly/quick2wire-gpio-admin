@@ -53,14 +53,19 @@ $(OUTDIR)/%.o: $(SRCDIR)/%.c
 out/gpio-admin.1.gz: man/gpio-admin.1
 	gzip -c $< > $@
 
-install: all
-	groupadd -f --system gpio
+install: all install-files install-group
+.PHONY: install
+
+install-files:
 	mkdir -p $(DESTDIR)/bin/
 	install -g gpio -m u=rwxs,g=rxs,o= $(OUTDIR)/gpio-admin $(DESTDIR)/bin/
 	mkdir -p $(DESTDIR)/share/man/man1/
 	install out/*.1.gz $(DESTDIR)/share/man/man1/
+.PHONY: install-files
 
-.PHONY: install
+install-group:
+	groupadd -f --system gpio
+.PHONY: install-group
 
 uninstall:
 	rm -vf $(DESTDIR)/bin/gpio-admin $(DESTDIR)/share/man/man1/gpio-admin.1.gz
