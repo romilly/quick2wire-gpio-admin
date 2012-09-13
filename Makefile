@@ -9,7 +9,7 @@ DEB_REVISION=1
 CC=gcc
 CFLAGS=-Wall -O2
 
-ARCH:=$(shell uname -s)-$(shell uname -i)
+ARCH:=$(shell uname -s)-$(shell uname -m)
 SRCDIR=src
 OUTDIR=out/$(ARCH)
 
