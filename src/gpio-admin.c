@@ -36,23 +36,18 @@ void allow_access_by_user(const char *pin_str, const char *filename) {
   }
 }
 
-unsigned int check_is_valid_gpio_pin(const char *pin_str) {
+void check_is_valid_gpio_pin(const char *pin_str) {
   char *endp;
   
   if (pin_str[0] == '\0') {
     error(2, 0, "empty string given for GPIO pin number");
   }
   
-  unsigned int pin = strtoul(pin_str, &endp, 0);
+  (void) strtoul(pin_str, &endp, 0);
   
   if (*endp != '\0') {
     error(2, 0, "%s is not a valid GPIO pin number", pin_str);
   }
-  
-  /* Pointless but addresses warning about unused variable, which is caused 
-   * by addressing warning about ignoring result of strtoul
-   */
-  return pin;
 }
 
 void write_text_to_path(const char *path, const char *text) {
@@ -76,13 +71,14 @@ int main(int argc, char **argv) {
   const char *command = argv[1];
   const char *pin_str = argv[2];
   
-  (void)check_is_valid_gpio_pin(pin_str);
+  check_is_valid_gpio_pin(pin_str);
   
   if (strcmp(command, "export") == 0) {
     write_text_to_path(GPIO_EXPORT_PATH, pin_str);
     allow_access_by_user(pin_str, "direction");
     allow_access_by_user(pin_str, "value");
     allow_access_by_user(pin_str, "active_low");
+    allow_access_by_user(pin_str, "edge");
   }
   else if (strcmp(command, "unexport") == 0) {
     write_text_to_path(GPIO_UNEXPORT_PATH, pin_str);
