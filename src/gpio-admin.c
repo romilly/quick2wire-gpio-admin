@@ -42,12 +42,13 @@ void allow_access_by_user(unsigned int pin, const char *filename) {
 
 unsigned int parse_gpio_pin(const char *pin_str) {
   char *endp;
+  unsigned int pin;
   
   if (pin_str[0] == '\0') {
     error(2, 0, "empty string given for GPIO pin number");
   }
   
-  unsigned int pin = strtoul(pin_str, &endp, 0);
+  pin = strtoul(pin_str, &endp, 0);
   
   if (*endp != '\0') {
     error(2, 0, "%s is not a valid GPIO pin number", pin_str);
