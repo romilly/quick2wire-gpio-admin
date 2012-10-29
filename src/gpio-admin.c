@@ -87,6 +87,7 @@ int main(int argc, char **argv) {
     allow_access_by_user(pin, "direction");
     allow_access_by_user(pin, "value");
     allow_access_by_user(pin, "active_low");
+    allow_access_by_user(pin, "edge");
   }
   else if (strcmp(command, "unexport") == 0) {
     write_pin_to_path(GPIO_UNEXPORT_PATH, pin);
