@@ -23,9 +23,13 @@ void usage_error(char **argv) {
   exit(1);
 }
 
-void allow_access_by_user(const char *pin_str, const char *filename) {
+void allow_access_by_user(unsigned int pin, const char *filename) {
   char path[PATH_MAX];
-  snprintf(path, PATH_MAX, "/sys/devices/virtual/gpio/gpio%s/%s", pin_str, filename);
+  int size = snprintf(path, PATH_MAX, "/sys/devices/virtual/gpio/gpio%u/%s", pin, filename);
+  
+  if (size >= PATH_MAX) {
+    error(7, 0, "path of GPIO pin is too long!");
+  }
   
   if (chown(path, getuid(), getgid()) != 0) {
     error(5, errno, "failed to change group ownership of %s", path);
@@ -36,7 +40,7 @@ void allow_access_by_user(const char *pin_str, const char *filename) {
   }
 }
 
-unsigned int check_is_valid_gpio_pin(const char *pin_str) {
+unsigned int parse_gpio_pin(const char *pin_str) {
   char *endp;
   
   if (pin_str[0] == '\0') {
@@ -49,23 +53,23 @@ unsigned int check_is_valid_gpio_pin(const char *pin_str) {
     error(2, 0, "%s is not a valid GPIO pin number", pin_str);
   }
   
-  /* Pointless but addresses warning about unused variable, which is caused 
-   * by addressing warning about ignoring result of strtoul
-   */
   return pin;
 }
 
-void write_text_to_path(const char *path, const char *text) {
-  int fd = open(path, O_WRONLY);
-  if (fd == -1) {
+void write_pin_to_path(const char *path, unsigned int pin) {
+  FILE * out = fopen(path, "w");
+  
+  if (out == NULL) {
     error(3, errno, "could not open %s", path);
   }
   
-  if (write(fd, text, strlen(text)) == -1) {
+  if (fprintf(out, "%u\n", pin) < 0) {
     error(4, errno, "could not write GPIO pin number to %s", path);
   }
   
-  close(fd);
+  if (fclose(out) == EOF) {
+    error(4, errno, "could not flush data to %s", path);
+  }
 }
 
 int main(int argc, char **argv) {
@@ -76,16 +80,16 @@ int main(int argc, char **argv) {
   const char *command = argv[1];
   const char *pin_str = argv[2];
   
-  (void)check_is_valid_gpio_pin(pin_str);
+  unsigned int pin = parse_gpio_pin(pin_str);
   
   if (strcmp(command, "export") == 0) {
-    write_text_to_path(GPIO_EXPORT_PATH, pin_str);
-    allow_access_by_user(pin_str, "direction");
-    allow_access_by_user(pin_str, "value");
-    allow_access_by_user(pin_str, "active_low");
+    write_pin_to_path(GPIO_EXPORT_PATH, pin);
+    allow_access_by_user(pin, "direction");
+    allow_access_by_user(pin, "value");
+    allow_access_by_user(pin, "active_low");
   }
   else if (strcmp(command, "unexport") == 0) {
-    write_text_to_path(GPIO_UNEXPORT_PATH, pin_str);
+    write_pin_to_path(GPIO_UNEXPORT_PATH, pin);
   }
   else {
     usage_error(argv);
