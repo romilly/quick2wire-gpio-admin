@@ -1,6 +1,6 @@
 
 PROJECT=quick2wire-gpio-admin
-VERSION=1.0.0
+VERSION=$(shell git describe)
 
 PACKAGE=$(PROJECT)-$(VERSION)
 
