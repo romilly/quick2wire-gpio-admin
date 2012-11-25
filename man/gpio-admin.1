@@ -5,6 +5,7 @@ gpio-admin \- export or unexport a GPIO pin and make it accessible to the user o
 .SH SYNOPSIS
 .B gpio-admin export
 \fIgpio-pin-number\fR
+\fI(pullup|pulldown)\fR
 .br
 .B gpio-admin unexport
 \fIgpio-pin-number\fR
@@ -15,10 +16,11 @@ gpio-admin \- export or unexport a GPIO pin and make it accessible to the user o
 .PP
 Exports or unexports a GPIO pin and allows only the user to control it.
 .PP
-\fBgpio export\fR \fIn\fR
+\fBgpio export\fR \fIn\fR \fI(pullup|pulldown)\fR
 .RS 4
 exports pin \fIn\fR as files under \fB/sys/devices/virtual/gpio\fR\fIn\fR/ 
-and makes the pin's control files readable and writeable by the user only.
+and makes the pin's control files readable and writeable by the user only. If the 
+optional third parameter is supplied, set the pullup or pulldown state of the pin.
 .RE
 .PP
 \fBgpio unexport\fR \fIn\fR 
