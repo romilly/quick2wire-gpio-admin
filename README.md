@@ -58,6 +58,18 @@ We provide [higher level APIs](https://github.com/quick2wire/quick2wire-python-a
 identifiers defined by the SOC, and use gpio-admin behind the scenes to export/unexport GPIO pins as
 required.
 
+Enabling the Pi's Pull Up and Pull Down Resistors
+-------------------------------------------------
+
+The Pi supports pull up and pull down resistors for each GPIO pin. To enable this add either "pullup" or "pulldown" as a 3rd parameter. Assumming that pin 17 is floating:
+
+    % gpio-admin export 17 pullup
+    % cat /sys/class/gpio/gpio17/value
+    1
+    % gpio-admin unexport 17
+    % gpio-admin export 17 pulldown
+    % cat /sys/class/gpio/gpio17/value
+    0
 
 
 More Information
