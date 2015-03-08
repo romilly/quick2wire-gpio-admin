@@ -26,9 +26,14 @@ static void usage_error(char **argv) {
 }
 
 static void allow_access_by_user(unsigned int pin, const char *filename) {
+  struct stat info;
+  char *sys_path = "/sys/class/gpio/gpio%u/%s";
+  if (stat("/sys/devices/soc", &info) != 0)
+    sys_path = "/sys/devices/virtual/gpio/gpio%u/%s";
+
   char path[PATH_MAX];
-  int size = snprintf(path, PATH_MAX, "/sys/class/gpio/gpio%u/%s", pin, filename);
-  
+  int size = snprintf(path, PATH_MAX, sys_path, pin, filename);
+
   if (size >= PATH_MAX) {
     error(7, 0, "path of GPIO pin is too long!");
   }
