@@ -9,7 +9,7 @@ either RPi.GPIO or (GPIO zero)[https://www.raspberrypi.org/blog/gpio-zero-a-frie
 
 ## Quick2Wire reeborn
 
-I am currently in the process of updating the Quick2Wire codebase and docmentation.
+I am currently in the process of updating the Quick2Wire codebase and documentation.
 
 You can follow progress on (RAREblog)[http://blog.rareschool.com/]
 
